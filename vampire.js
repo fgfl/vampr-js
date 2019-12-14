@@ -71,7 +71,6 @@ class Vampire {
   // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
   closestCommonAncestor(vampire) {
     let foundAncester = null;
-    let currentAncester = this;
 
     // Root vampire case
     if (vampire.creator === null) {
@@ -81,22 +80,17 @@ class Vampire {
       return this;
     }
 
-    do {
-      let otherAncester = vampire;
-      do {
+    for (let currentAncester = this; currentAncester !== null; currentAncester = currentAncester.creator) {
+      for (let otherAncester = vampire; otherAncester !== null; otherAncester = otherAncester.creator) {
         if (currentAncester === otherAncester) {
           foundAncester = currentAncester;
           break;
         }
-
-        otherAncester = otherAncester.creator
-      } while (otherAncester !== null);
-
+      }
       if (foundAncester) {
         break;
       }
-      currentAncester = currentAncester.creator;
-    } while (currentAncester !== null);
+    }
 
     return foundAncester;
  }
