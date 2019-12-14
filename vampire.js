@@ -83,9 +83,7 @@ class Vampire {
 
     do {
       let otherAncester = vampire;
-
       do {
-        console.log('current:', currentAncester.name, 'other:', otherAncester.name);
         if (currentAncester === otherAncester) {
           foundAncester = currentAncester;
           break;
@@ -98,9 +96,8 @@ class Vampire {
         break;
       }
       currentAncester = currentAncester.creator;
-    } while (currentAncester.creator !== null);
+    } while (currentAncester !== null);
 
-    console.log(foundAncester.name)
     return foundAncester;
  }
 }
